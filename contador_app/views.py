@@ -11,18 +11,15 @@ cap = None
 lock = threading.Lock()
 
 def load_model():
-    """Carga el modelo YOLO"""
     global model
     if model is None:
         model = YOLO('yolov8n.pt')
     return model
 
 def home(request):
-    """Vista principal"""
     return render(request, 'counter_app/home.html')
 
 def detect_people(frame):
-    """Detecta personas en el frame usando YOLO"""
     global people_count
     
     model = load_model()
@@ -61,7 +58,6 @@ def detect_people(frame):
     return frame
 
 def generate_frames():
-    """Generador de frames para streaming"""
     global cap
     
     if cap is None:
@@ -84,15 +80,14 @@ def generate_frames():
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 def video_feed(request):
-    """Vista para streaming de video"""
     return StreamingHttpResponse(
         generate_frames(),
         content_type='multipart/x-mixed-replace; boundary=frame'
     )
 
 def get_count(request):
-    """API para obtener el conteo actual"""
     global people_count
     with lock:
         count = people_count
     return JsonResponse({'count': count})
+
