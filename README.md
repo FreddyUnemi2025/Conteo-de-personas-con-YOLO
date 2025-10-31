@@ -26,11 +26,24 @@ Es fundamental trabajar dentro de un entorno virtual para aislar las dependencia
 a. Crear el Entorno Virtual
 Bash
 
+Pero para antes crear el entorno virtual, necesitamos tener instalado el virtualenv
+para poder obtenerlo, se dara las instrucciones acontinuacion
+
+# Para windows:
+pip install virtualenv
+
+
+# Para Linux/macOS:
+pip install virtualenv
+
+y con esto podremos ahora si crear el entorno virtual
+
 # Para Windows:
 python -m venv venv
 
 # Para macOS/Linux:
-python3 -m venv venv
+virtualenv venv
+no es necesario como en windows colocar python al inicio ya que estas terminales lo saben
 b. Activar el Entorno Virtual
 Bash
 
